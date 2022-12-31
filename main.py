@@ -3,7 +3,7 @@ import pandas as pd
 from streamlit_echarts import st_echarts
 import plotly.express as px
 
-st.title("Fifa World Cup 2022")
+st.title("🏆 Fifa World Cup 2022")
 first_second_team = st.multiselect("Select 2 teams from a match in the Fifa World Cup Qatar 2022", ('ARGENTINA', 'AUSTRALIA', 'BELGIUM', 'BRAZIL',
                                               'CAMEROON', 'CANADA', 'COSTA RICA', 'CROATIA',
                                               'DENMARK', 'ECUADOR', 'ENGLAND', 'FRANCE',
