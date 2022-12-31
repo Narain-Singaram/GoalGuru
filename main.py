@@ -25,7 +25,7 @@ if first_second_team != []:
     except IndexError:
         st.write("No rows were found in the results dataframe")
 
-    tab1, tab2, tab3 = st.tabs(["Game Possession", "Dog", "Owl"])
+    tab1, tab2, tab3 = st.tabs(["Game Possession", "Attempts", "Owl"])
 
     with tab1:
         t1_possession = results.at[results.index[0], "possession team1"]
@@ -69,4 +69,29 @@ if first_second_team != []:
             ]
         }
         st_echarts(options=options)
+
+    with tab2:
+        total_attempts = [
+            results.at[results.index[0], "total attempts team1"],
+            results.at[results.index[0], "total attempts team2"],
+        ]
+        on_target_attempts = [
+            results.at[results.index[0], "on target attempts team1"],
+            results.at[results.index[0], "on target attempts team2"],
+        ]
+        off_target_attempts = [
+            results.at[results.index[0], "off target attempts team1"],
+            results.at[results.index[0], "off target attempts team2"],
+        ]
+        inside_penalty_area_attempts = [
+            results.at[results.index[0], "attempts inside the penalty area team1"],
+            results.at[results.index[0], "attempts inside the penalty area  team2"],
+        ]
+        outside_penalty_area_attempts = [
+            results.at[results.index[0], "attempts outside the penalty area  team1"],
+            results.at[results.index[0], "attempts outside the penalty area  team2"],
+        ]
+
+        st.write(total_attempts[0])
+
 
