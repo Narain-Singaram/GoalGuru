@@ -4,8 +4,7 @@ from streamlit_echarts import st_echarts
 import plotly.express as px
 
 st.title("Fifa World Cup 2022")
-days = st.slider("Forecast Days", min_value=1, max_value=5, help="Select the number of days")
-first_second_team = st.multiselect("Select a team from the world cup", ('ARGENTINA', 'AUSTRALIA', 'BELGIUM', 'BRAZIL',
+first_second_team = st.multiselect("Select 2 teams from a match in the Fifa World Cup Qatar 2022", ('ARGENTINA', 'AUSTRALIA', 'BELGIUM', 'BRAZIL',
                                               'CAMEROON', 'CANADA', 'COSTA RICA', 'CROATIA',
                                               'DENMARK', 'ECUADOR', 'ENGLAND', 'FRANCE',
                                               'GERMANY', 'GHANA', 'IRAN', 'JAPAN',
