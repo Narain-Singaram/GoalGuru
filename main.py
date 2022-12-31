@@ -30,12 +30,12 @@ if first_second_team != []:
     with tab1:
         team1_possession_value = results.at[results.index[0], "possession team1"]
         team2_possession_value = results.at[results.index[0], "possession team2"]
+        in_contest_possession_value = results.at[results.index[0], "possession in contest"]
         st.write(team1_possession_value,team2_possession_value )
 
         options = {
             "title": {
-                "text": "Referer of a Website",
-                "subtext": "Fake Data",
+                "text": f"Game Possession Between {first_second_team[0]} and {first_second_team[1]}",
                 "left": "center"
             },
             "tooltip": {
@@ -43,7 +43,7 @@ if first_second_team != []:
             },
             "legend": {
                 "orient": "vertical",
-                "left": "left"
+                "bottom": "bottom"
             },
             "series": [
                 {
@@ -51,8 +51,8 @@ if first_second_team != []:
                     "type": "pie",
                     "radius": "50%",
                     "data": [
-                        {f"value": "46", "name": "Search Engine" },
-                        {f"value": "50", "name": "Direct" },
+                        {f"value": "46", "name": f"{first_second_team[0]}" },
+                        {f"value": "50", "name": f"{first_second_team[1]}" },
                         {f"value": "4", "name": "In Contest"}
                     ],
                     "emphasis": {
