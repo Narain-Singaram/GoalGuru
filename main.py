@@ -20,6 +20,9 @@ if first_second_team != []:
     results = df.loc[((df['team1'] == first_second_team[0]) & (df['team2'] == first_second_team[1]))
                 | ((df['team1'] == first_second_team[1]) & (df['team2'] == first_second_team[0]))]
 
+    t_1 = first_second_team[0].capitalize()
+    t_2 = first_second_team[1].capitalize()
+
     try:
         print("nothing")
     except IndexError:
@@ -38,7 +41,7 @@ if first_second_team != []:
 
         options = {
             "title": {
-                "text": f"Game Possession Between {first_second_team[0]} and {first_second_team[1]}",
+                "text": f"Game Possession Between {t_1} and {t_2}",
                 "left": "center"
             },
             "tooltip": {
@@ -71,6 +74,7 @@ if first_second_team != []:
         st_echarts(options=options)
 
     with tab2:
+        st.header(f"Attempts between {t_1} and {t_2}")
         total_attempts = [
             results.at[results.index[0], "total attempts team1"],
             results.at[results.index[0], "total attempts team2"],
@@ -92,6 +96,17 @@ if first_second_team != []:
             results.at[results.index[0], "attempts outside the penalty area  team2"],
         ]
 
-        st.write(total_attempts[0])
+        st.subheader("Total Attempts")
+
+        team1_total_attempts_col, team2_total_attempts_col = st.columns(2)
+
+        team1_total_attempts_col.metric(label=f"Total Attempts - {t_1}", value=f"{total_attempts[0]}", delta=f"{total_attempts[0] - total_attempts[1]}")
+        team2_total_attempts_col.metric(label=f"Total Attempts - {t_2}", value=f"{total_attempts[1]}", delta=f"{total_attempts[1] - total_attempts[0]}")
+
+        team1_total_attempts_col.success(f'{on_target_attempts[0]} of these attempts were on target', icon="ℹ️")
+        team2_total_attempts_col.success(f'{on_target_attempts[1]} of these attempts were on target', icon="ℹ️")
+
+        team1_total_attempts_col.error(f'{off_target_attempts[0]} of these attempts were off target', icon="ℹ️")
+        team2_total_attempts_col.error(f'{off_target_attempts[1]} of these attempts were off target', icon="ℹ️")
 
 
