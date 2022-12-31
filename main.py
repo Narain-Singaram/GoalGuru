@@ -109,4 +109,15 @@ if first_second_team != []:
         team1_total_attempts_col.error(f'{off_target_attempts[0]} of these attempts were off target', icon="ℹ️")
         team2_total_attempts_col.error(f'{off_target_attempts[1]} of these attempts were off target', icon="ℹ️")
 
+        team1_total_attempts_col.info(f'{inside_penalty_area_attempts[0]} '
+                                      f'of these attempts were inside of the penalty area', icon="ℹ️")
+        team2_total_attempts_col.info(f'{inside_penalty_area_attempts[1]} '
+                                      f'of these attempts were inside of the penalty area', icon="ℹ️")
 
+        team1_total_attempts_col.info(f'{outside_penalty_area_attempts[0]} '
+                                      f'of these attempts were outside of the penalty area', icon="ℹ️")
+        team2_total_attempts_col.info(f'{outside_penalty_area_attempts[1]} '
+                                      f'of these attempts were outside of the penalty area', icon="ℹ️")
+
+        st.caption("Some attempts can be within multiple categories. "
+                 "For example, a attempt could be inside the penalty area and could be off target.")
