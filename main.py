@@ -28,10 +28,13 @@ if first_second_team != []:
     tab1, tab2, tab3 = st.tabs(["Game Possession", "Dog", "Owl"])
 
     with tab1:
-        team1_possession_value = results.at[results.index[0], "possession team1"]
-        team2_possession_value = results.at[results.index[0], "possession team2"]
-        in_contest_possession_value = results.at[results.index[0], "possession in contest"]
-        st.write(team1_possession_value,team2_possession_value )
+        t1_possession = results.at[results.index[0], "possession team1"]
+        t2_possession = results.at[results.index[0], "possession team2"]
+        in_contest_possession = results.at[results.index[0], "possession in contest"]
+
+        t1_possession = t1_possession.replace("%", "")
+        t2_possession = t2_possession.replace("%", "")
+        in_contest_possession = in_contest_possession.replace("%", "")
 
         options = {
             "title": {
@@ -51,9 +54,9 @@ if first_second_team != []:
                     "type": "pie",
                     "radius": "50%",
                     "data": [
-                        {f"value": "46", "name": f"{first_second_team[0]}" },
-                        {f"value": "50", "name": f"{first_second_team[1]}" },
-                        {f"value": "4", "name": "In Contest"}
+                        {"value": f"{t1_possession}", "name": f"{first_second_team[0]}"},
+                        {"value": f"{t2_possession}", "name": f"{first_second_team[1]}"},
+                        {"value": f"{in_contest_possession}", "name": "In Contest"}
                     ],
                     "emphasis": {
                         "itemStyle": {
