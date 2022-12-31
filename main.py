@@ -1,10 +1,11 @@
+import builtins
 import streamlit as st
 import pandas as pd
 from streamlit_echarts import st_echarts
 import plotly.express as px
 
 st.title("🏆 Fifa World Cup 2022")
-first_second_team = st.multiselect("Select 2 teams from a match in the Fifa World Cup Qatar 2022", ('ARGENTINA', 'AUSTRALIA', 'BELGIUM', 'BRAZIL',
+first_second_team = st.multiselect("Select 2 teams from a match in the Fifa World Cup Qatar 2022 by the offical match name.", ('ARGENTINA', 'AUSTRALIA', 'BELGIUM', 'BRAZIL',
                                               'CAMEROON', 'CANADA', 'COSTA RICA', 'CROATIA',
                                               'DENMARK', 'ECUADOR', 'ENGLAND', 'FRANCE',
                                               'GERMANY', 'GHANA', 'IRAN', 'JAPAN',
@@ -12,13 +13,13 @@ first_second_team = st.multiselect("Select 2 teams from a match in the Fifa Worl
                                               'POLAND', 'PORTUGAL', 'QATAR', 'SAUDI ARABIA',
                                               'SENEGAL', 'SERBIA', 'SPAIN', 'SWITZERLAND',
                                               'TUNISIA', 'UNITED STATES', 'URUGUAY', 'WALES'), key="teams", max_selections=2)
+st.caption("So it would be **:green[Argentina Vs. Saudi Arabia]** not **:red[Saudi Arabia vs Argentina]**")
 
 df = pd.read_csv("Fifa_world_cup_matches.csv")
 
 if first_second_team != []:
 
-    results = df.loc[((df['team1'] == first_second_team[0]) & (df['team2'] == first_second_team[1]))
-                | ((df['team1'] == first_second_team[1]) & (df['team2'] == first_second_team[0]))]
+    results = df.loc[((df['team1'] == first_second_team[0]) & (df['team2'] == first_second_team[1]))]
 
     t_1 = first_second_team[0].capitalize()
     t_2 = first_second_team[1].capitalize()
