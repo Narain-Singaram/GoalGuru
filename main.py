@@ -4,7 +4,7 @@ import pandas as pd
 from streamlit_echarts import st_echarts
 import plotly.express as px
 
-st.set_page_config(page_title='Qatar WC 2022', page_icon = '🏆')
+st.set_page_config(page_title='GoalGuru', page_icon = '⚽️')
 
 st.title("🏆 Fifa World Cup 2022")
 
@@ -50,6 +50,7 @@ first_second_team = st.multiselect("Select 2 teams from a match in the Fifa Worl
 st.caption("So it would be **:green[Argentina Vs. Saudi Arabia]** not **:red[Saudi Arabia vs Argentina]**")
 
 df = pd.read_csv("Fifa_world_cup_matches.csv")
+
 
 if first_second_team != []:
 
