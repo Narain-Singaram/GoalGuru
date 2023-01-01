@@ -4,15 +4,49 @@ import pandas as pd
 from streamlit_echarts import st_echarts
 import plotly.express as px
 
+st.set_page_config(page_title='Qatar WC 2022', page_icon = '🏆')
+
 st.title("🏆 Fifa World Cup 2022")
-first_second_team = st.multiselect("Select 2 teams from a match in the Fifa World Cup Qatar 2022 by the offical match name.", ('ARGENTINA', 'AUSTRALIA', 'BELGIUM', 'BRAZIL',
-                                              'CAMEROON', 'CANADA', 'COSTA RICA', 'CROATIA',
-                                              'DENMARK', 'ECUADOR', 'ENGLAND', 'FRANCE',
-                                              'GERMANY', 'GHANA', 'IRAN', 'JAPAN',
-                                              'KOREA REPUBLIC', 'MEXICO', 'MOROCCO', 'NETHERLANDS',
-                                              'POLAND', 'PORTUGAL', 'QATAR', 'SAUDI ARABIA',
-                                              'SENEGAL', 'SERBIA', 'SPAIN', 'SWITZERLAND',
-                                              'TUNISIA', 'UNITED STATES', 'URUGUAY', 'WALES'), key="teams", max_selections=2)
+
+# Define a dictionary that maps country names to emojis
+country_emoji_map = {
+    "ARGENTINA": "🇦🇷",
+    "AUSTRALIA": "🇦🇺",
+    "BELGIUM": "🇧🇪",
+    "BRAZIL": "🇧🇷",
+    "CAMEROON": "🇨🇲",
+    "CANADA": "🇨🇦",
+    "COSTA RICA": "🇨🇷",
+    "CROATIA": "🇭🇷",
+    "DENMARK": "🇩🇰",
+    "ECUADOR": "🇪🇨",
+    "ENGLAND": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "FRANCE": "🇫🇷",
+    "GERMANY": "🇩🇪",
+    "GHANA": "🇬🇭",
+    "IRAN": "🇮🇷",
+    "JAPAN": "🇯🇵",
+    "KOREA REPUBLIC": "🇰🇷",
+    "MEXICO": "🇲🇽",
+    "MOROCCO": "🇲🇦",
+    "NETHERLANDS": "🇳🇱",
+    "POLAND": "🇵🇱",
+    "PORTUGAL": "🇵🇹",
+    "QATAR": "🇶🇦",
+    "SAUDI ARABIA": "🇸🇦",
+    "SENEGAL": "🇸🇳",
+    "SERBIA": "🇷🇸",
+    "SPAIN": "🇪🇸",
+    "SWITZERLAND": "🇨🇭",
+    "TUNISIA": "🇹🇳",
+    "UNITED STATES": "🇺🇸",
+    "URUGUAY": "🇺🇾",
+    "WALES": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+}
+
+# Display the multiselect widget
+first_second_team = st.multiselect("Select 2 teams from a match in the Fifa World Cup Qatar 2022 by the offical match name.", list(country_emoji_map.keys()), key="teams", max_selections=2)
+
 st.caption("So it would be **:green[Argentina Vs. Saudi Arabia]** not **:red[Saudi Arabia vs Argentina]**")
 
 df = pd.read_csv("Fifa_world_cup_matches.csv")
@@ -21,8 +55,11 @@ if first_second_team != []:
 
     results = df.loc[((df['team1'] == first_second_team[0]) & (df['team2'] == first_second_team[1]))]
 
-    t_1 = first_second_team[0].capitalize()
-    t_2 = first_second_team[1].capitalize()
+    t_1_emoji = country_emoji_map[first_second_team[0]]
+    t_2_emoji = country_emoji_map[first_second_team[1]]
+
+    t_1 = first_second_team[0].title()
+    t_2 = first_second_team[1].title()
 
     try:
         print("nothing")
@@ -42,7 +79,7 @@ if first_second_team != []:
 
         options = {
             "title": {
-                "text": f"Game Possession Between {t_1} and {t_2}",
+                "text": f"Possession between {t_1_emoji} {t_1} and {t_2_emoji} {t_2}",
                 "left": "center"
             },
             "tooltip": {
