@@ -112,7 +112,7 @@ if first_second_team != []:
         st_echarts(options=options)
 
     with tab2:
-        st.header(f"Attempts between {t_1} and {t_2}")
+        st.header(f"Attempts between {t_1_emoji} {t_1} & {t_2_emoji} {t_2}")
         total_attempts = [
             results.at[results.index[0], "total attempts team1"],
             results.at[results.index[0], "total attempts team2"],
@@ -138,24 +138,24 @@ if first_second_team != []:
 
         team1_total_attempts_col, team2_total_attempts_col = st.columns(2)
 
-        team1_total_attempts_col.metric(label=f"Total Attempts - {t_1}", value=f"{total_attempts[0]}", delta=f"{total_attempts[0] - total_attempts[1]}")
-        team2_total_attempts_col.metric(label=f"Total Attempts - {t_2}", value=f"{total_attempts[1]}", delta=f"{total_attempts[1] - total_attempts[0]}")
+        team1_total_attempts_col.metric(label=f"Total Attempts - {t_1_emoji} {t_1}", value=f"{total_attempts[0]}", delta=f"{total_attempts[0] - total_attempts[1]}")
+        team2_total_attempts_col.metric(label=f"Total Attempts - {t_2_emoji} {t_2}", value=f"{total_attempts[1]}", delta=f"{total_attempts[1] - total_attempts[0]}")
 
-        team1_total_attempts_col.success(f'{on_target_attempts[0]} of these attempts were on target', icon="ℹ️")
-        team2_total_attempts_col.success(f'{on_target_attempts[1]} of these attempts were on target', icon="ℹ️")
+        team1_total_attempts_col.success(f'{on_target_attempts[0]} of these attempts were on target', icon=f"{t_1_emoji}")
+        team2_total_attempts_col.success(f'{on_target_attempts[1]} of these attempts were on target', icon=f"{t_2_emoji}️")
 
-        team1_total_attempts_col.error(f'{off_target_attempts[0]} of these attempts were off target', icon="ℹ️")
-        team2_total_attempts_col.error(f'{off_target_attempts[1]} of these attempts were off target', icon="ℹ️")
+        team1_total_attempts_col.error(f'{off_target_attempts[0]} of these attempts were off target', icon=f"{t_1_emoji}")
+        team2_total_attempts_col.error(f'{off_target_attempts[1]} of these attempts were off target', icon=f"{t_2_emoji}")
 
         team1_total_attempts_col.info(f'{inside_penalty_area_attempts[0]} '
-                                      f'of these attempts were inside of the penalty area', icon="ℹ️")
+                                      f'of these attempts were inside of the penalty area', icon=f"{t_1_emoji}")
         team2_total_attempts_col.info(f'{inside_penalty_area_attempts[1]} '
-                                      f'of these attempts were inside of the penalty area', icon="ℹ️")
+                                      f'of these attempts were inside of the penalty area', icon=f"{t_2_emoji}")
 
         team1_total_attempts_col.info(f'{outside_penalty_area_attempts[0]} '
-                                      f'of these attempts were outside of the penalty area', icon="ℹ️")
+                                      f'of these attempts were outside of the penalty area', icon=f"{t_1_emoji}")
         team2_total_attempts_col.info(f'{outside_penalty_area_attempts[1]} '
-                                      f'of these attempts were outside of the penalty area', icon="ℹ️")
+                                      f'of these attempts were outside of the penalty area', icon=f"{t_2_emoji}")
 
         st.caption("Some attempts can be within multiple categories. "
                  "For example, a attempt could be inside the penalty area and could be off target.")
